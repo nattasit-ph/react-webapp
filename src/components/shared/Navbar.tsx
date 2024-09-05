@@ -2,7 +2,7 @@
 import {useState, useRef} from 'react';
 import { NavLink } from 'react-router-dom'
 import { Transition } from '@headlessui/react'
-// import useOutsideClick from "./useOutsideClick";
+import useOutsideClick from "./useOutsideClick";
 
 const Navbar = () => {
   
@@ -10,10 +10,10 @@ const Navbar = () => {
   const [isActive, setIsActive] = useState(false)
 
   const ref = useRef<HTMLDivElement>(null);
-  // useOutsideClick(ref, () => {
-  //   // alert('You clicked outside')
-  //   setIsActive(false)
-  // });
+  useOutsideClick(ref, () => {
+    console.log(ref);
+    setIsActive(false)
+  });
 
 
   return (
@@ -67,21 +67,22 @@ const Navbar = () => {
 
             <div className="hidden sm:block sm:ml-6">
               <div className="flex space-x-4">
-
-                <NavLink to="/" className="text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+              
+              
+                <NavLink to="/" className={({ isActive }) => `${ isActive ? 'bg-green-500': ''} text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"`}>
                   Home
                 </NavLink>
-                <NavLink to="/about" className="text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                <NavLink to="/about" className={({ isActive }) => `${ isActive ? 'bg-green-500': ''} text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"`}>
                   About
                 </NavLink>
-                <NavLink to="/teams" className="text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                <NavLink to="/teams" className={({ isActive }) => `${ isActive ? 'bg-green-500': ''} text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"`}>
                   Teams
                 </NavLink>
-                <NavLink to="/projects" className="text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                <NavLink to="/projects" className={({ isActive }) => `${ isActive ? 'bg-green-500': ''} text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"`}>
                   Projects
                 </NavLink>
                 
-                <div className="relative">
+                <div ref={ref} className="relative">
 
                 {/* Item active: "text-gray-900", Item inactive: "text-gray-500" */}
                 <button type="button" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 inline-flex rounded-md text-sm font-medium" aria-expanded="false" onClick={() => {setIsActive(!isActive)}}>
@@ -120,7 +121,7 @@ const Navbar = () => {
                 leaveTo="opacity-0 translate-y-1">
 
                 {
-                  <div ref={ref} className={`${ isActive ? 'block':'hidden'} " absolute z-10 left-1/2 transform -translate-x-1/2 mt-3 px-2 w-screen max-w-md sm:px-0"`}>
+                  <div className={`${ isActive ? 'block':'hidden'} " absolute z-10 left-1/2 transform -translate-x-1/2 mt-3 px-2 w-screen max-w-md sm:px-0"`}>
                   <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden" >
                     <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
                       <a href="#" className="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50">
