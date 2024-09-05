@@ -40,9 +40,9 @@ const Routes = () => {
       {/* <AppRoute path="/" exact={true} layout={AuthLayout} component={Register} /> */}
 
       <Route path="/" element={<FrontLayout><Home /></FrontLayout>} />
-      <Route path="/" element={<FrontLayout><About /></FrontLayout>} />
-      <Route path="/" element={<FrontLayout><Team /></FrontLayout>} />
-      <Route path="/" element={<FrontLayout><Project /></FrontLayout>} />
+      <Route path="/about" element={<FrontLayout><About /></FrontLayout>} />
+      <Route path="/teams" element={<FrontLayout><Team /></FrontLayout>} />
+      <Route path="/projects" element={<FrontLayout><Project /></FrontLayout>} />
     </Switch>
   );
 }
